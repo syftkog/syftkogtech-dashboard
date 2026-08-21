@@ -53,7 +53,7 @@ healthScore is 0-100. Be direct and specific — every insight must reference th
       headers: {
         "Content-Type": "application/json",
         "x-api-key": apiKey,
-        "anthropic-version": "2024-06-01",
+        "anthropic-version": "2023-06-01",
       },
       body: JSON.stringify({
         model: "claude-sonnet-4-6",
