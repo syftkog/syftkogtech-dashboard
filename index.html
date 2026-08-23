@@ -30,6 +30,7 @@
   .tabbtn.active{background:#0a2040;border-color:#1a4060;color:var(--cyan);font-weight:600}
   @media(max-width:640px){.hide-sm{display:none}}
 </style>
+  <script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
 <div id="root"></div>
@@ -383,6 +384,15 @@ function App(){
 }
 
 ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+</script>
+  <script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", user => {
+      if (!user) {
+        window.netlifyIdentity.show();
+      }
+    });
+  }
 </script>
 </body>
 </html>
