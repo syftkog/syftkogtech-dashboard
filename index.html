@@ -389,7 +389,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
   if (window.netlifyIdentity) {
     window.netlifyIdentity.on("init", user => {
       if (!user) {
-        window.netlifyIdentity.show();
+        window.netlifyIdentity.open();
       }
     });
   }
