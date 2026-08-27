@@ -158,7 +158,7 @@ function App(){
     </div>
   );
 
-  if(screen==="login") return (
+  if(screen==="login" && !window.netlifyIdentity?.currentUser()) return (
     <div style={{minHeight:"100vh",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",padding:20}}>
       <div className="logo" style={{width:60,height:60,borderRadius:16,fontSize:26,marginBottom:16}}>S</div>
       <div style={{fontSize:22,fontWeight:700,color:"#fff",marginBottom:4}}>SYFTKOGTECH</div>
