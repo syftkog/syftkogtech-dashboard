@@ -73,7 +73,7 @@ healthScore is 0-100. Be direct and specific — every insight must reference th
     const text = (data.content || []).map((i) => i.text || "").join("");
     const clean = text.replace(/```json|\n```|```/g, "").trim();
 
-    let jsonMatch = clean.match(/\{[\s\S]*\}/);
+     jsonMatch = clean.match(/\{[\s\S]*\}/);
     if (!jsonMatch) {
       return { statusCode: 502, body: JSON.stringify({ error: "Invalid response format from AI" }) };
     }
