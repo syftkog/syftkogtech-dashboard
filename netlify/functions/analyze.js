@@ -57,7 +57,7 @@ healthScore is 0-100. Be direct and specific — every insight must reference th
       },
       body: JSON.stringify({
         model: "claude-sonnet-4-6",
-        max_tokens: 1200,
+        max_tokens: 4096,
         system: SYSTEM_PROMPT,
         messages: [{ role: "user", content: "Analyze this business data:\n\n" + businessData }],
       }),
@@ -78,7 +78,15 @@ healthScore is 0-100. Be direct and specific — every insight must reference th
       return { statusCode: 502, body: JSON.stringify({ error: "Invalid response format from AI" }) };
     }
 
-    const parsed = JSON.parse(jsonMatch[0]);
+        let parsed;
+    try {
+      parsed = JSON.parse(jsonMatch[0]);
+    } catch (parseErr) {
+      return {
+        statusCode: 502,
+        body: JSON.stringify({ error: "The analysis came back malformed. Please run it again." }),
+      };
+    }
 
     return {
       statusCode: 200,
