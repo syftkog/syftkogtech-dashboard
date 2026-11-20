@@ -29,7 +29,11 @@
   .tabbtn{flex:1;padding:9px;background:transparent;border:1px solid transparent;border-radius:8px;color:var(--muted);font-size:13px;cursor:pointer}
   .tabbtn.active{background:#0a2040;border-color:#1a4060;color:var(--cyan);font-weight:600}
   @media(max-width:640px){.hide-sm{display:none}}
-</style>
+@media print {
+  body { background: #fff !important; color: #000 !important; }
+  button, textarea, input, nav, footer { display: none !important; }
+  * { box-shadow: none !important; }
+}</style>
   <script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
@@ -43,7 +47,7 @@
 const { useState, useEffect } = React;
 
 const DEMO_CLIENTS = {
-  "admin@syftkogtech.com": { password: "syftkog2026", name: "Davie Hodge", role: "admin", company: "SYFTKOGTECH" },
+  "admin@syftkogtech.com": { password: "247Ble$$NYIT", name: "Davie Hodge", role: "admin", company: "SYFTKOGTECH" },
   "client@riversidecoffee.com": { password: "coffee123", name: "Sarah Chen", role: "client", company: "Riverside Coffee Co." },
   "demo@acmecorp.com": { password: "demo123", name: "James Miller", role: "client", company: "Acme Corp" },
 };
@@ -371,7 +375,7 @@ function App(){
             {error && <div style={{marginTop:10,padding:"10px 14px",background:"#2a0d0d",border:"1px solid #5a1a1a",borderRadius:8,color:"var(--red)",fontSize:13}}>{error}</div>}
             <button className="btn" style={{marginTop:14,width:"100%",padding:13,letterSpacing:1}} onClick={analyzeData} disabled={loading}>
               ⚡  RUN AI ANALYSIS
-            </button>
+            </button><button onClick={() => window.print()} className="btn ghost">Print Report</button>
           </div>
         </div>
 
