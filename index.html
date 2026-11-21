@@ -102,11 +102,20 @@ function App(){
     setReports(updated);
   };
 
-  const handleLogin = () => {
-    const c = DEMO_CLIENTS[loginEmail.toLowerCase().trim()];
-    if(!c || c.password !== loginPass){ setLoginError("Invalid email or password."); return; }
-    setUser({ ...c, email: loginEmail.toLowerCase().trim() });
-    setLoginError(""); setScreen("dashboard");
+ const handleLogin = async () => {
+    const email = loginEmail.toLowerCase().trim();
+    try {
+      const user = await netlifyIdentity.gotrue.login(email, loginPass, true);
+      setUser({
+        name: (user.user_metadata && user.user_metadata.full_name) || email,
+        email: email,
+        role: "client",
+        company: "",
+      });
+      setLoginError(""); setScreen("dashboard");
+    } catch (err) {
+      setLoginError("Invalid email or password.");
+    }
   };
 
   const handleLogout = () => {
